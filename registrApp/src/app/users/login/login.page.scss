@@ -1,0 +1,49 @@
+ion-content{
+  overflow: scroll;
+}
+
+ion-img{
+  margin: 0;
+}
+
+ion-item{
+    padding-top: 30px;
+}
+ion-button{
+    width: 150px;
+    margin-top: 50px;
+    margin-left: 90px;
+}
+
+ion-text p{
+  margin-top: 40px;
+  text-align: center;
+}
+
+ion-text h1{
+  margin-top: 20px;
+  text-align: center;
+}
+
+ion-text h3{
+  text-align: center;
+}
+
+span{
+  color:goldenrod;
+}
+
+// ANIMACION IMAGEN
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.logo {
+  animation: fadeInOut 3s ease-in-out infinite;
+}
+

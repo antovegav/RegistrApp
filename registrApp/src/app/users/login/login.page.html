@@ -1,0 +1,52 @@
+  <!-- padding para darle formato - espacio a los lados -->
+<ion-content class="ion-padding">
+  <ion-img
+    class="logo"
+    src="./assets/img/Logo_DuocUC.svg"
+    alt="Duoc UC Logo"
+  ></ion-img>
+  
+  <ion-text>
+    <h1>Registr<span>App</span></h1>
+    <h3>Registra tu Asistencia</h3>
+  </ion-text>
+
+    <!-- ejemplo de ruta para imagen -->
+  <!-- <ion-img
+    src="./assets/img/Logo_DuocUC.svg"
+    alt="logo duoc" ></ion-img>-->
+
+
+  <!-- Boton y texto para escribir usuario -->
+  <ion-item>
+    <ion-label position="floating">Usuario.</ion-label>
+    <ion-input type="email" [(ngModel)]="userLoginModal.username"></ion-input>
+  </ion-item>
+
+  <!-- Contraseña - input tipo password prote-->
+  <ion-item>
+    <ion-label position="floating">Contraseña.</ion-label>
+    <ion-input
+      type="password" [(ngModel)]="userLoginModal.password"
+    ></ion-input>
+  </ion-item>
+  <ion-button expand= "block" color="warning" (click)="userLogin(userLoginModal)">Ingresar</ion-button>
+
+  <!-- <ion-button expand="block" color="dark" >
+    Registrar Usuario
+  </ion-button>
+
+  <ion-button expand="block" color="dark" (click)="goToInicio()" >
+    volver a inicio
+  </ion-button> -->
+
+  <!-- <ion-button expand="block" color="danger" (click)="goToPassworOlvidado()" >
+    ¿olvidaste tu contraseña?
+  </ion-button> -->
+  
+  <ion-text>
+    <p>
+      <!-- CONTACTO -->
+      ¿Problemas con tu cuenta? Sigue este <a href="https://www.duoc.cl/contacto/">enlace</a> para más ayuda.
+    </p>
+  </ion-text>

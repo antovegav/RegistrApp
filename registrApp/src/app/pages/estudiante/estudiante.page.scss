@@ -1,0 +1,39 @@
+ion-text h1{
+    padding-left: 50px;
+    animation: changeColor infinite 3s ease-in-out;
+}
+
+.avatar{
+    margin: auto;
+}
+
+.perfil{
+    padding-top: 50px;
+}
+
+div{
+    padding-top: 20px;
+    text-align: center;
+}
+
+ion-text h5{
+    color: goldenrod;
+}
+
+ion-title{
+    padding-left: 90px;
+    color: goldenrod;
+}
+
+// ANIMACION DE TEXTO
+@keyframes changeColor{
+    0%{
+        color: gold;
+    }
+    50%{
+        color: goldenrod;
+    }
+    100%{
+        color: black;
+    }
+}

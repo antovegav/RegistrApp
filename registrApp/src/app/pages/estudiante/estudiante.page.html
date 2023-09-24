@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{titulo}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true" class="ion-padding" *ngIf="userInfoReceived">
+  <ion-row>
+    <ion-col class="content-col">
+
+      <!-- SALUDO -->
+      <ion-text>
+        <h1>¡Bienvenido {{userInfoReceived.nombre}}!</h1>
+      </ion-text>
+
+      <!-- IMAGEN DE PERFIL -->
+      <div class="perfil">
+        <ion-avatar class="avatar" >
+          <img alt="Silueta" class="imagen" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+      </div>
+
+      <!-- LISTA CON LA INFORMACION DEL PERFIL -->
+      <ion-list>       
+          <div>
+            <!-- NOMBRE -->
+            <ion-text position="stacked"><h4>Nombre de Usuario</h4></ion-text>
+            <ion-text readonly="true"><h5>
+                {{userInfoReceived.nombre}}
+                {{userInfoReceived.apellido}}
+              </h5></ion-text>
+          </div>       
+
+          <div>
+            <!-- EMAIL -->
+            <ion-text position="stacked"><h4>Correo</h4></ion-text>
+            <ion-text readonly="true"><h5>
+                {{userInfoReceived.correo}}
+            </h5></ion-text>
+          </div>
+
+          <div>
+            <!-- FECHA DE NACIMIENTO -->
+            <ion-text position="stacked"><h4>Fecha de Nacimiento</h4></ion-text>
+            <ion-text readonly="true"><h5>
+                {{userInfoReceived.nacimiento}}
+            </h5></ion-text>
+          </div>
+
+          <div>
+            <!-- TIPO DE USUARIO -->
+            <ion-text position="stacked"><h4>rol</h4></ion-text>
+            <ion-text readonly="true"><h5>
+                {{userInfoReceived.userType}}
+            </h5></ion-text>
+          </div>     
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>
