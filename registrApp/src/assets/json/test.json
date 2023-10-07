@@ -1,0 +1,79 @@
+{
+    "_id": {
+        "$oid": "651bc9451be59003a91f1a93"
+    },
+    "id_estudiante": {
+        "_id": {
+            "$oid": "651bc9652d763be53af79b21"
+        },
+        "estudiante1":{ "_id":{"$oid":"65126c6e0c73f164782afe43"},
+                        "nombre":"Juan",
+                        "apellido":"Pérez",
+                        "userType":"estudiante",
+                        "username":"juanperez",
+                        "password":"123",
+                        "nacimiento":"1999-01-01",
+                        "correo":"juperez@duocuc.cl"},
+        "estudiante2":{"_id":{"$oid":"65126d6c0c73f164782afe45"},
+                        "nombre":"María",
+                        "apellido":"González",
+                        "userType":"estudiante",
+                        "username":"mariagonzalez",
+                        "password":"password2",
+                        "nacimiento":"1995-06-12",
+                        "correo":"agonzalez@duocuc.cl"},
+        "estudiante3":{"_id":{"$oid":"65126d6c0c73f164782afe46"},
+                        "nombre":"Pedro",
+                        "apellido":"González",
+                        "userType":"estudiante",
+                        "username":"pedrogonzalez",
+                        "password":"password3",
+                        "nacimiento":"1995-06-12",
+                        "correo":"pegonzalez@duocuc.cl"}},
+    "id_profesor": {
+        "_id": {
+            "$oid": "651bc97d2d763be53af79b22"
+        },
+        "profesor1":{"_id":{"$oid":"65126e3d0c73f164782afe46"},
+                        "nombre":"Pedro",
+                        "apellido":"Sánchez",
+                        "userType":"profesor",
+                        "username":"pedrosanchez",
+                        "password":"password3",
+                        "nacimiento":null,
+                        "correo":"pesanchez@profesor.duoc.cl"},
+        "profesor2":{"_id":{"$oid":"65126e990c73f164782afe47"},
+                        "nombre":"Ana",
+                        "apellido":"Martínez",
+                        "userType":"profesor",
+                        "username":"anamartinez",
+                        "password":"password4",
+                        "nacimiento":null,
+                        "correo":"amartinez@profesor.duoc.cl"}},
+    "id_clases": {
+        "_id": {
+            "$oid": "651bc9a02d763be53af79b23"
+        },"asignatura":["matematicas",
+                        "lenguaje",
+                        "historia",
+                        "artes",
+                        "ciencias"]
+    },
+    "id_asistencia": {
+        "_id":{
+            "$oid":"651b64056e74dda1f856aaff"
+            },
+            "id_horario":"",
+            "id_seccion":"",
+            "estudiante":true,
+            "id_clase":{
+                        "_id":{"$oid":"6518168a767404e1da46974a"},
+                        "0":"matematicas",
+                        "1":"lenguaje",
+                        "2":"historia",
+                        "3":"artes",
+                        "4":"ciencias"
+                        }
+    }
+}
+
