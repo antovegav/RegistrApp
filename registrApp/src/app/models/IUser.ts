@@ -8,4 +8,3 @@ export interface IUser {
     nacimiento: Date,
     correo: string,
 }
-a
