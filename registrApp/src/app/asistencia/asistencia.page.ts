@@ -12,6 +12,8 @@ import { IonicModule } from '@ionic/angular';
 })
 export class AsistenciaPage implements OnInit {
 
+  titulo = 'Confirmar Asistencia';
+
   constructor() { }
 
   ngOnInit() {
