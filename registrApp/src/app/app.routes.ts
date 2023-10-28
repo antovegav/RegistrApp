@@ -37,6 +37,10 @@ export const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
+  {
+    path: 'asistencia',
+    loadComponent: () => import('./asistencia/asistencia.page').then( m => m.AsistenciaPage)
+  },
   
 
 
