@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 import { IUserLogin } from 'src/app/models/IUserLogin';
 import { UserModel } from 'src/app/models/UserModel';
+import { ObtenerUsuarioService } from 'src/app/services/obtener-usuario.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -17,58 +19,29 @@ export class LoginPage implements OnInit {
 
   // Objeto que almacena los datos del usuario
   userLoginModal = {
-    username: '',
+    correo: '',
     password: '',
   };
 
-    // Arreglo que almacena los usuarios
-    listUser: UserModel[] = [
-      {
-        id: 1,
-        nombre: 'Juan',
-        apellido: 'Pérez',
-        userType: 'estudiante',
-        username: 'juanperez',
-        password: 'password1',
-        nacimiento: '1999-01-01',
-        correo: 'juperez@duocuc.cl',
-      },
-      {
-        id: 2,
-        nombre: 'María',
-        apellido: 'González',
-        userType: 'estudiante',
-        username: 'mariagonzalez',
-        password: 'password2',
-        nacimiento: '1995-06-12',
-        correo: "agonzalez@duocuc.cl",
-      },
-      {
-        id: 3,
-        nombre: 'Pedro',
-        apellido: 'Sánchez',
-        userType: 'profesor',
-        username: 'pedrosanchez',
-        password: 'password3',
-        nacimiento: undefined,
-        correo: "pesanchez@profesor.duoc.cl",
-      },
-      {
-        id: 4,
-        nombre: 'Ana',
-        apellido: 'Martínez',
-        userType: 'profesor',
-        username: 'anamartinez',
-        password: 'password4',
-        nacimiento: undefined,
-      correo: "amartinez@profesor.duoc.cl",
-      },
-    ];
+
+    alumnosLista: any;
+    profesoresLista: any;
+    listUser: any;
 
   // Función que agrega un usuario al arreglo
-  constructor(private router: Router) { }
+  constructor(private router: Router, private obtenerUsuarioService: ObtenerUsuarioService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.alumnosLista = await firstValueFrom(this.obtenerUsuarioService.getEstudiantes());
+    console.log("lista alumnos", this.alumnosLista);
+    
+    this.profesoresLista = await firstValueFrom(this.obtenerUsuarioService.getProfesores());
+    console.log("lista profesores", this.profesoresLista );
+
+    this.listUser = [...this.alumnosLista, ...this.profesoresLista];
+    console.log("lista alumnos", this.listUser);
+
+
   }
 
   // Función que se ejecuta cuando se presiona el botón de iniciar sesión
@@ -84,8 +57,8 @@ export class LoginPage implements OnInit {
   // Función que se ejecuta cuando se presiona el botón de iniciar sesión
   userLogin(userLoginInfo: IUserLogin): boolean{
     for(let i = 0; i < this.listUser.length; i++){
-      if((this.listUser[i].username == userLoginInfo.username) && (this.listUser[i].password == userLoginInfo.password)){
-        console.log('User Loged...', this.userLoginModal.username, this.userLoginModal.password);
+      if((this.listUser[i].correo == userLoginInfo.correo) && (this.listUser[i].password == userLoginInfo.password)){
+        console.log('User Loged...', this.userLoginModal.correo, this.userLoginModal.correo);
 
         // Redireccionar a la página de inicio
         let userInfoSend: NavigationExtras = {
@@ -118,7 +91,7 @@ export class LoginPage implements OnInit {
 
   // Función que se ejecuta cuando se presiona el botón de iniciar sesión
   userLoginModalRestart(): void {
-    this.userLoginModal.username = '';
+    this.userLoginModal.correo = '';
     this.userLoginModal.password = '';
   }
 }
