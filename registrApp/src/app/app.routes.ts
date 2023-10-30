@@ -32,12 +32,16 @@ export const routes: Routes = [
     loadComponent: () => import('./password-olvidado/password-olvidado.page').then( m => m.PasswordOlvidadoPage)
   },
   {
+    path: 'asistencia',
+    loadComponent: () => import('./asistencia/asistencia.page').then( m => m.AsistenciaPage)
+  },
+  {
     // Si no se encuentra la ruta, redirigir a login
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full',
   },
-  
+
 
 
 
