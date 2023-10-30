@@ -29,6 +29,10 @@
           <ion-label slot="end"> {{ clase.fecha }} </ion-label>
         </ion-item>
         <ion-item>
+          <ion-label> Sala: </ion-label>  
+          <ion-label slot="end"> {{ clase.sala }} </ion-label>
+        </ion-item>
+        <ion-item>
           <ion-label> Hora Inicio: </ion-label>
           <ion-label slot="end"> {{ clase.hora_inicio}} </ion-label>
         </ion-item>
@@ -38,7 +42,8 @@
         </ion-item> 
     
       </ion-list>
-       <ion-button color="warning" expand="block" shape="round" (click)="routGenerator()">Generar QR</ion-button>
+       <ion-button color="warning" expand="block" shape="round" (click)="enviarDatosClase(clase)">Generar QR</ion-button>
+       
 
 
     </ion-card-content>

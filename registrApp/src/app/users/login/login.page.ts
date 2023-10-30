@@ -78,12 +78,12 @@ export class LoginPage implements OnInit {
         if(this.listUser[i].userType == 'estudiante'){
           console.log("Ingresando...");
           // Redireccionar a la página de estudiante
-          let sendInfo = this.router.navigate(['/estudiante'], userInfoSend);
+          this.router.navigate(['/estudiante'], userInfoSend);
           return true;
         // Redireccionar a la página de profesor
         }else{
           console.log("redireccionando a profesor");
-          let sendInfo = this.router.navigate(['/profesor'], userInfoSend);
+          this.router.navigate(['/profesor'], userInfoSend);
           return true;
         }
       }

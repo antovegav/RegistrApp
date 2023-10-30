@@ -1,13 +1,47 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>generador</ion-title>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{titulo}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">generador</ion-title>
+      <ion-title size="large">{{ titulo }}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card  >
+    <ion-card-header>
+      <!-- TITULO DE CARTA -->
+      <ion-card-title>QR</ion-card-title>
+      <!-- IMAGEN DE CARTA / QR -->
+      <div class="qrcodeImage">
+        <qrcode
+          [qrdata]="qrGenerado"
+          [allowEmptyString]="true"
+          [ariaLabel]="'QR Code image with the following content...'"
+          [cssClass]="'center'"
+          [colorDark]="'#000000ff'"
+          [colorLight]="'#ffffffff'"
+          [elementType]="'canvas'"
+          [imageHeight]="75"
+          [imageWidth]="75"
+          [margin]="4"
+          [scale]="1"
+          [title]="'A custom title attribute'"
+          [width]="300"
+        ></qrcode>
+      </div>
+    </ion-card-header>
+    <!--  TEXTO DE CARTA  -->
+    <ion-card-content>
+      ¡Escanea el codigo QR entregado por tu profesor para quedar registrado en la clase!
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>
+
