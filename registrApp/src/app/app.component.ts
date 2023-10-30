@@ -39,7 +39,7 @@ export class AppComponent {
     if(userType = 'estudiante'){
       this.appPages.push(
         { title: 'Inicio', url: 'estudiante', icon: 'home' },
-        { title: 'Escanear', url: 'inicio', icon: 'create' },
+        // { title: 'Escanear', url: 'inicio', icon: 'create' },
         { title: 'Cambiar Contraseña', url: 'password-olvidado', icon: 'person-circle' },
         { title: 'Salir', url: 'login', icon: 'log-in' }
       );
