@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, LoadingController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 import { IUserLogin } from 'src/app/models/IUserLogin';
 import { UserModel } from 'src/app/models/UserModel';
@@ -29,7 +29,12 @@ export class LoginPage implements OnInit {
     listUser: any;
 
   // Función que agrega un usuario al arreglo
-  constructor(private router: Router, private obtenerUsuarioService: ObtenerUsuarioService) { }
+  constructor(
+    private router: Router,
+    private obtenerUsuarioService: ObtenerUsuarioService,
+    private loadingController: LoadingController,
+    private alertController: AlertController
+    ) { }
 
   async ngOnInit() {
     this.alumnosLista = await firstValueFrom(this.obtenerUsuarioService.getEstudiantes());
@@ -72,13 +77,13 @@ export class LoginPage implements OnInit {
         // Redireccionar a la página de inicio
         if(this.listUser[i].userType == 'estudiante'){
           console.log("Ingresando...");
-          // Redireccionar a la página de inicio
-          let sendInfo = this.router.navigate(['/estudiante'], userInfoSend);
+          // Redireccionar a la página de estudiante
+          this.router.navigate(['/estudiante'], userInfoSend);
           return true;
-        // Redireccionar a la página de inicio
+        // Redireccionar a la página de profesor
         }else{
           console.log("redireccionando a profesor");
-          let sendInfo = this.router.navigate(['/profesor'], userInfoSend);
+          this.router.navigate(['/profesor'], userInfoSend);
           return true;
         }
       }
@@ -94,4 +99,10 @@ export class LoginPage implements OnInit {
     this.userLoginModal.correo = '';
     this.userLoginModal.password = '';
   }
+
+
+
+
+
+
 }

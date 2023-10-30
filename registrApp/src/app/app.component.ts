@@ -13,7 +13,7 @@ export class AppComponent {
   // ARREGLO CON LAS PAGINAS QUE SE MOSTRARAN EN EL MENU
   public appPages = [
     // { title: 'Inicio', url: 'estudiante', icon: 'home' },
-    { title: 'Codigo QR', url: 'inicio', icon: 'qr-code' },
+    { title: 'Crear Clase', url: 'crear-clase', icon: 'create' },
     { title: 'Cambiar Contraseña', url: 'password-olvidado', icon: 'person-circle' },
     { title: 'Salir', url: 'login', icon: 'log-in' },
   ];

@@ -32,8 +32,17 @@ export const routes: Routes = [
     loadComponent: () => import('./password-olvidado/password-olvidado.page').then( m => m.PasswordOlvidadoPage)
   },
   {
+<<<<<<< HEAD
     path: 'asistencia',
     loadComponent: () => import('./asistencia/asistencia.page').then( m => m.AsistenciaPage)
+=======
+    path: 'crear-clase',
+    loadComponent: () => import('./pages/profesor/crear-clase/crear-clase.page').then( m => m.CrearClasePage)
+  },
+  {
+    path: 'generador',
+    loadComponent: () => import('./pages/profesor/generador/generador.page').then( m => m.GeneradorPage)
+>>>>>>> origin/alertas
   },
   {
     // Si no se encuentra la ruta, redirigir a login
@@ -42,6 +51,10 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 
+
+ 
+
+  
 
 
 
