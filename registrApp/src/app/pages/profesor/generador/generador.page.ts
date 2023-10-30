@@ -26,7 +26,7 @@ export class GeneradorPage implements OnInit {
   constructor(
     private router: Router
   ) {
-   }
+  }
 
   async ngOnInit() {
     this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['clase'];
@@ -43,4 +43,3 @@ export class GeneradorPage implements OnInit {
   }
 
 }
- 

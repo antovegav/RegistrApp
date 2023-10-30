@@ -16,6 +16,8 @@ import { IClase } from 'src/app/models/IClase';
 })
 export class CrearClasePage implements OnInit {
 
+  titulo = "Crear Clase"
+
   listaClases: any;
 
   qrResponse: any;

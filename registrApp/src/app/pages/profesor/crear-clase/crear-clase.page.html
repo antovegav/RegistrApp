@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title> crear clase</ion-title>
+    <ion-title> {{titulo}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
 
   <ion-item>
     <ion-icon aria-hidden="true" name="calendar" slot="start"></ion-icon>
-    <ion-label>Cursos</ion-label>
+    <ion-label class="titulo">Cursos</ion-label>
   </ion-item>
 
   <ion-card *ngFor = "let clase of listaClases">
