@@ -8,6 +8,7 @@ import { UserModel } from 'src/app/models/UserModel';
 import { ObtenerUsuarioService } from 'src/app/services/obtener-usuario.service';
 import { firstValueFrom } from 'rxjs';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -60,7 +61,8 @@ export class LoginPage implements OnInit {
   }
 
   // Función que se ejecuta cuando se presiona el botón de iniciar sesión
-  userLogin(userLoginInfo: IUserLogin): boolean{
+  async userLogin(userLoginInfo: IUserLogin): Promise<boolean>{
+    let userFound = false;
     for(let i = 0; i < this.listUser.length; i++){
       if((this.listUser[i].correo == userLoginInfo.correo) && (this.listUser[i].password == userLoginInfo.password)){
         console.log('User Loged...', this.userLoginModal.correo, this.userLoginModal.correo);
@@ -86,7 +88,18 @@ export class LoginPage implements OnInit {
           this.router.navigate(['/profesor'], userInfoSend);
           return true;
         }
-      }
+      }}if (!userFound) {
+      // Credenciales no válidas, mostrar mensaje de error
+      const alertMessage = 'Credenciales no válidas. Por favor, verifica tus datos.';
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: alertMessage,
+        buttons: ['Aceptar'],
+      });
+      await alert.present();
+  
+      // Si no se encuentra el usuario se reinician los campos
+      this.userLoginModalRestart();
     }
 
     // Si no se encuentra el usuario se reinician los campos
