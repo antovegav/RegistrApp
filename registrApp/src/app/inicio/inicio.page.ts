@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ObtenerUsuarioService } from '../services/obtener-usuario.service';
 
 @Component({
   selector: 'app-inicio',
@@ -16,7 +17,7 @@ export class InicioPage implements OnInit {
 
   userInfoReceived: any;
 
-  constructor() { }
+  constructor(private obtenerUsuarioService: ObtenerUsuarioService) { }
 
   ngOnInit() {
   }
