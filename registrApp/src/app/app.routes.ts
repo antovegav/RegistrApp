@@ -32,11 +32,23 @@ export const routes: Routes = [
     loadComponent: () => import('./password-olvidado/password-olvidado.page').then( m => m.PasswordOlvidadoPage)
   },
   {
+    path: 'crear-clase',
+    loadComponent: () => import('./pages/profesor/crear-clase/crear-clase.page').then( m => m.CrearClasePage)
+  },
+  {
+    path: 'generador',
+    loadComponent: () => import('./pages/profesor/generador/generador.page').then( m => m.GeneradorPage)
+  },
+  {
     // Si no se encuentra la ruta, redirigir a login
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full',
   },
+
+
+ 
+
   
 
 
