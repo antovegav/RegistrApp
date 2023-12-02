@@ -9,6 +9,7 @@ import { ObtenerUsuarioService } from 'src/app/services/obtener-usuario.service'
 import { firstValueFrom } from 'rxjs';
 // import { Storage } from '@ionic/storage-angular';
 import { Storage } from '@ionic/storage';
+import { Plugin } from '@capacitor/core';
 // import { Preferences } from '@capacitor/preferences';
 
 
@@ -31,7 +32,7 @@ export class LoginPage implements OnInit {
   };
 
   // public alumno: UserModel;
-
+  
   // private KEY_ALUMNO = 'alumno';
 
     alumnosLista: any;
@@ -132,7 +133,11 @@ export class LoginPage implements OnInit {
       }
     });
   }
-  
+
+  async getUserData(key: string) {
+    const { value } = await this.storage.get(key);
+    return JSON.parse(value!);
+  }
 
   // async ionViewWillEnter() {
   //   const alumno =  await Preferences.get({ key: this.KEY_ALUMNO });
@@ -147,10 +152,4 @@ export class LoginPage implements OnInit {
   // async guardarAlumno(){
   //   await Preferences.set({ key: this.KEY_ALUMNO, value: JSON.stringify(this.alumno) });
   // };
-
-
-
-
 }
-
-  
