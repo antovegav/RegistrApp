@@ -7,6 +7,10 @@ import { IUserLogin } from 'src/app/models/IUserLogin';
 import { UserModel } from 'src/app/models/UserModel';
 import { ObtenerUsuarioService } from 'src/app/services/obtener-usuario.service';
 import { firstValueFrom } from 'rxjs';
+// import { Storage } from '@ionic/storage-angular';
+import { Storage } from '@ionic/storage';
+import { Plugin } from '@capacitor/core';
+// import { Preferences } from '@capacitor/preferences';
 
 
 @Component({
@@ -14,8 +18,11 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule],
+  providers: [Storage],
 })
+
+
 export class LoginPage implements OnInit {
 
   // Objeto que almacena los datos del usuario
@@ -24,6 +31,9 @@ export class LoginPage implements OnInit {
     password: '',
   };
 
+  // public alumno: UserModel;
+  
+  // private KEY_ALUMNO = 'alumno';
 
     alumnosLista: any;
     profesoresLista: any;
@@ -34,8 +44,8 @@ export class LoginPage implements OnInit {
     private router: Router,
     private obtenerUsuarioService: ObtenerUsuarioService,
     private loadingController: LoadingController,
-    private alertController: AlertController
-    ) { }
+    private alertController: AlertController,
+    private storage: Storage) { this.initStorage();}
 
   async ngOnInit() {
     this.alumnosLista = await firstValueFrom(this.obtenerUsuarioService.getEstudiantes());
@@ -46,10 +56,12 @@ export class LoginPage implements OnInit {
 
     this.listUser = [...this.alumnosLista, ...this.profesoresLista];
     console.log("lista alumnos", this.listUser);
-
-
   }
 
+  async initStorage() {
+    await this.storage.create();
+  }
+  
   // Función que se ejecuta cuando se presiona el botón de iniciar sesión
   goToInicio (){
     this.router.navigate(['/inicio']);
@@ -66,10 +78,10 @@ export class LoginPage implements OnInit {
     for(let i = 0; i < this.listUser.length; i++){
       if((this.listUser[i].correo == userLoginInfo.correo) && (this.listUser[i].password == userLoginInfo.password)){
         console.log('User Loged...', this.userLoginModal.correo, this.userLoginModal.correo);
-
+        // Se guarda el usuario en el storage
+        await this.storage.set('userData', this.listUser[i]);
         // Redireccionar a la página de inicio
-        let userInfoSend: NavigationExtras = {
-
+        const userInfoSend: NavigationExtras = {
           // Se envía el objeto userLoginModal como parámetro a la página de inicio
           state: {
             user: this.listUser[i]
@@ -79,6 +91,7 @@ export class LoginPage implements OnInit {
         // Redireccionar a la página de inicio
         if(this.listUser[i].userType == 'estudiante'){
           console.log("Ingresando...");
+          // this.guardarAlumno();
           // Redireccionar a la página de estudiante
           this.router.navigate(['/estudiante'], userInfoSend);
           return true;
@@ -113,9 +126,30 @@ export class LoginPage implements OnInit {
     this.userLoginModal.password = '';
   }
 
+  ionViewWillEnter() {
+    this.storage.get('userData').then(userData => {
+      if (userData) {
+        console.log('Usuario recuperado:', userData);
+      }
+    });
+  }
 
+  async getUserData(key: string) {
+    const { value } = await this.storage.get(key);
+    return JSON.parse(value!);
+  }
 
+  // async ionViewWillEnter() {
+  //   const alumno =  await Preferences.get({ key: this.KEY_ALUMNO });
 
+  //   if (!alumno.value) {
+  //     await Preferences.set({ key: this.KEY_ALUMNO, value: JSON.stringify(this.alumno) });
+  //   }else{
+  //     this.alumno = JSON.parse(alumno.value);
+  //   }
+  // };
 
-
+  // async guardarAlumno(){
+  //   await Preferences.set({ key: this.KEY_ALUMNO, value: JSON.stringify(this.alumno) });
+  // };
 }
