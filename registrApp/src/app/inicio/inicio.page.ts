@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ObtenerUsuarioService } from '../services/obtener-usuario.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
 
 @Component({
   selector: 'app-inicio',
@@ -13,13 +15,29 @@ import { ObtenerUsuarioService } from '../services/obtener-usuario.service';
 })
 export class InicioPage implements OnInit {
 
+  code: any;
+
   titulo = 'Escanear QR';
 
   userInfoReceived: any;
 
-  constructor(private obtenerUsuarioService: ObtenerUsuarioService) { }
+
+
+  constructor(private barcodeScanner: BarcodeScanner) {}
 
   ngOnInit() {
+    
+  }
+
+
+
+  scan(){
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.code = barcodeData.text;
+      console.log('Barcode data', barcodeData);
+      }).catch(err => {
+          console.log('Error', err);
+      });
   }
 
 }
